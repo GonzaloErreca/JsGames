@@ -3,51 +3,51 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardArray = [
     {
       name: "leaves",
-      img: "/MemoryGame/Img/leaves.png",
+      img: "./Img/leaves.png",
     },
     {
       name: "leaves",
-      img: "/MemoryGame/Img/leaves.png",
+      img: "./Img/leaves.png",
     },
     {
       name: "headphones",
-      img: "/MemoryGame/Img/headphones.png",
+      img: "./Img/headphones.png",
     },
     {
       name: "headphones",
-      img: "/MemoryGame/Img/headphones.png",
+      img: "./Img/headphones.png",
     },
     {
       name: "dices",
-      img: "/MemoryGame/Img/dices.png",
+      img: "./Img/dices.png",
     },
     {
       name: "dices",
-      img: "/MemoryGame/Img/dices.png",
+      img: "./Img/dices.png",
     },
     {
       name: "memory",
-      img: "/MemoryGame/Img/memory.png",
+      img: "./Img/memory.png",
     },
     {
       name: "memory",
-      img: "/MemoryGame/Img/memory.png",
+      img: "./Img/memory.png",
     },
     {
       name: "clock",
-      img: "/MemoryGame/Img/clock.png",
+      img: "./Img/clock.png",
     },
     {
       name: "clock",
-      img: "/MemoryGame/Img/clock.png",
+      img: "./Img/clock.png",
     },
     {
       name: "cherries",
-      img: "/MemoryGame/Img/cherries.png",
+      img: "./Img/cherries.png",
     },
     {
       name: "cherries",
-      img: "/MemoryGame/Img/cherries.png",
+      img: "./Img/cherries.png",
     }
   ];
 
@@ -66,7 +66,7 @@ cardArray.sort(() => 0.5 - Math.random());
 function crearTablero() {
   for (let i = 0; i < cardArray.length; i++) {
     let card = document.createElement("img");
-    card.setAttribute("src", "/MemoryGame/Img/blank.png");
+    card.setAttribute("src", "./Img/blank.png");
     card.setAttribute("data-id", i);
     card.addEventListener("click",flipCard)
     grid.appendChild(card);
@@ -95,12 +95,12 @@ function checkForMatch() {
   const optionTwoId = cardsChosenId[1];
   if (cardsChosen[0] === cardsChosen[1]) {
     alert("Encontraste un par!");
-    cards[optionOneId].setAttribute("src", "/MemoryGame/Img/white.png");
-    cards[optionTwoId].setAttribute("src", "/MemoryGame/Img/white.png");
+    cards[optionOneId].setAttribute("src", "./Img/white.png");
+    cards[optionTwoId].setAttribute("src", "./Img/white.png");
     cardsWon.push(cardsChosen);
   } else {
-    cards[optionOneId].setAttribute("src", "/MemoryGame/Img/blank.png");
-    cards[optionTwoId].setAttribute("src", "/MemoryGame/Img/blank.png");
+    cards[optionOneId].setAttribute("src", "./Img/blank.png");
+    cards[optionTwoId].setAttribute("src", "./Img/blank.png");
     alert("Intentalo otra vez!");
   }
 

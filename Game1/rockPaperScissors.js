@@ -5,12 +5,21 @@ const possibleChoices = document.querySelectorAll("button");
 let userChoice;
 let resultado;
 
+
+
 possibleChoices.forEach(possibleChoices => possibleChoices.addEventListener("click", (e) => {
     userChoice = e.target.id
     userChoiceDisplay.innerHTML = userChoice;
     generateComputerChoice();
     getResult();
 }));
+
+
+
+
+
+
+
 
 function generateComputerChoice() {
     let randomChoice = Math.floor(Math.random() * 3) + 1;
@@ -23,6 +32,8 @@ if (randomChoice === 1) {
 }
 computerChoiceDisplay.innerHTML = computerChoice;
 }
+
+
 
 function getResult() {
     if (computerChoice === userChoice) {
