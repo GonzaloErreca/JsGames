@@ -2,10 +2,10 @@
 //ejecucion del juego (poner un do while para resetear??al ganar o perder??)
 
 
-let gridSize=Number(prompt("De que tamanio desea su mapa buscaminas?"));
-do{
-  let mineGridDensity=Number(prompt("indique la densidad de minas (2 denso a 7 poco denso"));
-} while(mineGridDensity<2||mineGridDensity>7);
+let gridSize=Number(prompt("De que tamaño desea su mapa buscaminas?"));
+do {
+  mineGridDensity = Number(prompt("Indique la densidad de minas (2 para denso, 7 para poco denso):"));
+} while (isNaN(mineGridDensity) || mineGridDensity < 2 || mineGridDensity > 7);
 
 
 
