@@ -1,15 +1,31 @@
 //document.addEventListener("DOMContentLoaded", () => {
+//ejecucion del juego (poner un do while para resetear??al ganar o perder??)
+
+
+let gridSize=Number(prompt("De que tamanio desea su mapa buscaminas?"));
+do{
+  let mineGridDensity=Number(prompt("indique la densidad de minas (2 denso a 7 poco denso"));
+} while(mineGridDensity<2||mineGridDensity>7);
+
+
+
+
+console.log(generateGrid());
+console.log(addNumbers(generateGrid()));
+
+
+
+
 
 function generateGrid() {
   let mineGrid = [];
-  for (let x = 0; x < 4; x++) {
+  for (let x = 0; x < gridSize; x++) {
     mineGrid.push([]);
-    for (let y = 0; y < 4; y++) {
-      mineGrid[x][y] = Math.floor(Math.random() * 3);
+    for (let y = 0; y < gridSize; y++) {
+      mineGrid[x][y] = Math.floor(Math.random() * mineGridDensity);
       if (mineGrid[x][y] === 1) {
         mineGrid[x][y] = "X";
-      } else
-      {
+      } else {
         mineGrid[x][y] = 0;
       }
     }
@@ -17,8 +33,7 @@ function generateGrid() {
   return mineGrid;
 }
 
-console.log(generateGrid());
-console.log(addNumbers(generateGrid()));
+
 //-------------------------
 
 function addNumbers(arr) {
@@ -48,9 +63,7 @@ function addNumbers(arr) {
       }       
     } 
    }
-   
-
-   return arr;
+      return arr;
 
       // if (arr[x][y] !== "X") {
       //   if (arr[x][y - 1] === "X"&& arr[x - 1][y - 1] !== undefined) {
@@ -82,10 +95,3 @@ function addNumbers(arr) {
       //   }
       // }
     }
-
-    
-
-
-//   console.log(generateGrid());
-
-//})
