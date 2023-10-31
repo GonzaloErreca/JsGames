@@ -71,12 +71,14 @@ var cardsChosen = [];
 var cardsChosenId = [];
 var cardsWon = [];
 
-// crear tablero
-cardArray.sort(() => 0.5 - Math.random());
+
 
 //console.log(cardArray); //probemos que las cartas esten randomized
+//================================================
+//CREACION DEL TABLERO
 
 function crearTablero() {
+  cardArray.sort(() => 0.5 - Math.random());
   for (let i = 0; i < cardArray.length; i++) {
     let card = document.createElement("img");
     card.setAttribute("src", "./Img/blank.png");
@@ -88,7 +90,8 @@ function crearTablero() {
 
 crearTablero();
 
-//dar vuelta la carta
+//================================================================
+//VOLTEAR LAS CARTAS
 
 function flipCard(card) {
   let cardID = this.getAttribute("data-id");
@@ -102,8 +105,30 @@ function flipCard(card) {
     setTimeout(checkForMatch, 500);
   }
 }
+//================================================================
+// MOSTRAR LAS CARTAS TEMPORALMENTE
 
-//chequear el match
+function revealAllCards() {
+  
+  const cards = document.querySelectorAll("img");
+  // Mostrar todas las cartas cambiando su atributo "src"
+  cards.forEach((card, index) => {
+    setTimeout(() => {
+      card.setAttribute("src", cardArray[index].img);
+    }, index * 100); 
+  });
+  // Ocultar las cartas después de un período de tiempo
+    setTimeout(() => {
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.setAttribute("src", "./Img/blank.png");
+        }, index * 200);
+      });
+    }, 100); // Cambia el tiempo para ajustar la duración de ocultación
+}
+
+//=================================================================
+//CHEQUEAR EL MATCH
 
 function checkForMatch() {
   let cards = document.querySelectorAll("img");
@@ -128,12 +153,41 @@ function checkForMatch() {
   cardsChosenId = [];
 }
 
+//================================================================
+// PUNTAJE
+
 function scoreUpdate(points) {
   score = score + points;
   resultDisplay.textContent = "Puntaje: " + score;
 }
 
+
+
+
+//================================================================
+//RESET
+
+function resetGame() {
+  // Eliminar todas las cartas del grid
+
+  while (grid.firstChild) {
+    grid.removeChild(grid.firstChild);
+  }
+  crearTablero();
+  score = 0; 
+  scoreUpdate(0);
+  revealAllCards() 
+}
+
+const resetButton = document.querySelector("#reset");
+
+resetButton.addEventListener("click", resetGame);
+
+
+//================================================================
+//INICIO DEL JUEGO
+
+revealAllCards();
+
+
 });
-
-
-
