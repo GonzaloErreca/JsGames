@@ -114,7 +114,7 @@ function showCell(x, y) {
     revelarBoard();
     //response();
   } else {
-    console.log("La posicion (" + x +1 + ", " + y +1 + ") contiene: " + cell);
+    console.log("La posicion (" + parseInt(x +1)  + ", " + parseInt(y +1) + ") contiene: " + cell);
   }
 
   if (winCondition()) {
@@ -199,7 +199,7 @@ const revealed = createEmptyGrid(gridSize);
 
 while (continuar) {
   printBoard();
-  const input = prompt("Ingrese las coordenadas de la celda(fila, columna):").split(",");
+  const input = prompt("Ingrese las coordenadas de la celda(fila. columna):").split(".");
   const x = parseInt(input[0]-1);
   const y = parseInt(input[1]-1);
   showCell(x, y);
