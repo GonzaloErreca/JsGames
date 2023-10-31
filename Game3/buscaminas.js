@@ -97,7 +97,7 @@ function printBoard() {
 //funcion para pedir y ver la celda, tambien comprueba si ganaste
 
 function showCell(x, y) {
-  if (x < 0 || x >= gridSize || y < 0 || y >= gridSize) {
+  if (x < 0 || x >= gridSize || y < 0 || y >= gridSize||isNaN(x) || isNaN(y)) {
     console.log("no existe la posicion");
     return;
   }
@@ -121,7 +121,7 @@ function showCell(x, y) {
     console.log("GANASTE!");
     alert(
       "HAS GANADO EL JUEGO!")
-      winResponse();
+    winResponse();
   }
 }
 
@@ -156,7 +156,9 @@ function winResponse() {
 //================================================================
 //RESETEAR EL JUEGO
 function resetGame() {
-  
+}
+
+
 //================================================================
 //REVELAR EL TABLERO
 function revelarBoard() {
