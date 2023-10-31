@@ -4,56 +4,69 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       name: "leaves",
       img: "./Img/leaves.png",
+      matched: false,
     },
     {
       name: "leaves",
       img: "./Img/leaves.png",
+      matched: false,
     },
     {
       name: "headphones",
       img: "./Img/headphones.png",
+      matched: false,
     },
     {
       name: "headphones",
       img: "./Img/headphones.png",
+      matched: false,
     },
     {
       name: "dices",
       img: "./Img/dices.png",
+      matched: false,
     },
     {
       name: "dices",
       img: "./Img/dices.png",
+      matched: false,
     },
     {
       name: "memory",
       img: "./Img/memory.png",
+      matched: false,
     },
     {
       name: "memory",
       img: "./Img/memory.png",
+      matched: false,
     },
     {
       name: "clock",
       img: "./Img/clock.png",
+      matched: false,
     },
     {
       name: "clock",
       img: "./Img/clock.png",
+      matched: false,
     },
     {
       name: "cherries",
       img: "./Img/cherries.png",
+      matched: false,
     },
     {
       name: "cherries",
       img: "./Img/cherries.png",
+      matched: false,
     }
   ];
 
 
 const grid = document.querySelector(".grid");
 const resultDisplay = document.querySelector("#result");
+let score = 0;
 var cardsChosen = [];
 var cardsChosenId = [];
 var cardsWon = [];
@@ -79,10 +92,13 @@ crearTablero();
 
 function flipCard(card) {
   let cardID = this.getAttribute("data-id");
+  if (card.matched) {
+    return;
+  }
   cardsChosen.push(cardArray[cardID].name);
   cardsChosenId.push(cardID);
   this.setAttribute("src", cardArray[cardID].img);
-  if (cardsChosen.length === 2) {
+    if (cardsChosen.length === 2) {
     setTimeout(checkForMatch, 500);
   }
 }
@@ -95,17 +111,26 @@ function checkForMatch() {
   const optionTwoId = cardsChosenId[1];
   if (cardsChosen[0] === cardsChosen[1]) {
     alert("Encontraste un par!");
+    cards[optionOneId].removeEventListener("click", flipCard);
+    cards[optionTwoId].removeEventListener("click", flipCard);
+    scoreUpdate(+1);
     cards[optionOneId].setAttribute("src", "./Img/white.png");
     cards[optionTwoId].setAttribute("src", "./Img/white.png");
     cardsWon.push(cardsChosen);
   } else {
     cards[optionOneId].setAttribute("src", "./Img/blank.png");
     cards[optionTwoId].setAttribute("src", "./Img/blank.png");
+    scoreUpdate(-1);
     alert("Intentalo otra vez!");
   }
 
   cardsChosen = [];
   cardsChosenId = [];
+}
+
+function scoreUpdate(points) {
+  score = score + points;
+  resultDisplay.textContent = "Puntaje: " + score;
 }
 
 });
