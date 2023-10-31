@@ -6,15 +6,8 @@
 
 const emptyCell = 0;
 const mineCell = "X";
+var continuar = true;
 
-
-
-
-//console.log(generateGrid());
-const board = addNumbers(generateGrid());
-console.log(board);
-const revealed = createEmptyGrid(gridSize);
-console.log(revealed);
 
 //----------------------------------------------------------------
 //generamos el tablero con el tamaño y la densidad pedida:
@@ -117,16 +110,23 @@ function showCell(x, y) {
   const cell = board[x][y];
   if (cell === mineCell) {
     console.log("PERDISTE! Encontraste una mina!");
-    // lost = true;
+    continuar =false;
+    alert("PERDISTE!, ENCONTRASTE UNA MINA!")
+    revelarBoard();
   } else {
     console.log("La posicion (" + x + ", " + y + ") contiene: " + cell);
   }
 
   if (winCondition()) {
     console.log("GANASTE!");
+    alert(
+      "HAS GANADO EL JUEGO!")
+      winResponse();
   }
 }
 
+//================================================================
+// CONDICION DE TRIUNFO
 
 function winCondition() {
   for (let x = 0; x < gridSize; x++) {
@@ -139,31 +139,68 @@ function winCondition() {
   return true;
 }
 
+//================================================================
+//OPCIONES AL GANAR
+function winResponse() {
+  revelarBoard();
 
+  let playAgain = prompt("Jugamos de nuevo? (Y/N)").toLowerCase();
+  if (playAgain === "y") {
+    resetGame();
+  } else {
+    console.log("Gracias por jugar!");
+    
+  }
+}
+
+//================================================================
+//RESETEAR EL JUEGO
+function resetGame() {
+  
+//================================================================
+//REVELAR EL TABLERO
+function revelarBoard() {
+  console.log("El tablero era:");
+  for (let i = 0; i < gridSize; i++) {
+    let row = "";
+    for (let j = 0; j < gridSize; j++) {
+      row += board[i][j] + " ";
+    }
+    console.log(row);
+  }
+}
 
 
 //================================================================
 // COMIENZO DEL JUEGO
 //================================================================
+
 console.log("BienvenidX al Buscaminas!");
 console.log("Especifica las coordenadas de la celda que quieras revelar");
 
 // Main game loop
 
 let gridSize = Number(prompt("De que tamaño desea su mapa buscaminas?"));
+let mineGridDensity;
 do {
   mineGridDensity = Number(
     prompt("Indique la densidad de minas (2 para denso, 7 para poco denso):")
   );
 } while (isNaN(mineGridDensity) || mineGridDensity < 2 || mineGridDensity > 7);
 
-while (true) {
+const board = addNumbers(generateGrid());
+//console.log(board);
+const revealed = createEmptyGrid(gridSize);
+//console.log(revealed);
+
+while (continuar) {
   printBoard();
   const input = prompt("Ingrese las coordenadas de la celda(fila, columna):").split(",");
   const x = parseInt(input[0]);
   const y = parseInt(input[1]);
   showCell(x, y);
 }
+
 
 
 
